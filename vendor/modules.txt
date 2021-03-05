@@ -1,3 +1,9 @@
+# github.com/gorilla/context v1.1.1
+## explicit
+github.com/gorilla/context
+# github.com/gorilla/mux v1.6.2
+## explicit
+github.com/gorilla/mux
 # github.com/pkg/errors v0.8.1
 github.com/pkg/errors
 # github.com/spf13/afero v1.5.1
@@ -7,8 +13,10 @@ github.com/spf13/afero/mem
 # github.com/tamalsaha/DIY-k8s-extended-apiserver v0.0.0-20190115100249-5c40974efc74
 ## explicit
 github.com/tamalsaha/DIY-k8s-extended-apiserver/lib/certstore
+github.com/tamalsaha/DIY-k8s-extended-apiserver/lib/server
 # golang.org/x/text v0.3.3
 golang.org/x/text/transform
 golang.org/x/text/unicode/norm
 # k8s.io/client-go v9.0.0+incompatible
+## explicit
 k8s.io/client-go/util/cert

@@ -1,0 +1,14 @@
+# github.com/pkg/errors v0.8.1
+github.com/pkg/errors
+# github.com/spf13/afero v1.5.1
+## explicit
+github.com/spf13/afero
+github.com/spf13/afero/mem
+# github.com/tamalsaha/DIY-k8s-extended-apiserver v0.0.0-20190115100249-5c40974efc74
+## explicit
+github.com/tamalsaha/DIY-k8s-extended-apiserver/lib/certstore
+# golang.org/x/text v0.3.3
+golang.org/x/text/transform
+golang.org/x/text/unicode/norm
+# k8s.io/client-go v9.0.0+incompatible
+k8s.io/client-go/util/cert

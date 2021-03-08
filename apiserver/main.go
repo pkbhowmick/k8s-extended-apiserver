@@ -74,7 +74,7 @@ func main() {
 	// *************************************
 
 	cfg := server.Config{
-		Address: "127.0.0.1:8443",
+		Address: "127.0.0.1:8080",
 		CACertFiles: []string{
 			store.CertFile("ca"),
 		},
@@ -108,7 +108,7 @@ func main() {
 		}
 		u := *req.URL
 		u.Scheme = "https"
-		u.Host = "127.0.0.2:8443"
+		u.Host = "127.0.0.2:8080"
 		fmt.Printf("forwording request to %v\n", u.String())
 
 		newReq, _ := http.NewRequest(req.Method, u.String(), nil)

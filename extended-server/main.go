@@ -57,7 +57,7 @@ func main() {
 	// ****************************************
 
 	cfg := server.Config{
-		Address:     "127.0.0.2:8443",
+		Address:     "127.0.0.2:8080",
 		CACertFiles: []string{},
 		CertFile:    store.CertFile("tls"),
 		KeyFile:     store.KeyFile("tls"),

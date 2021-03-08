@@ -1,10 +1,32 @@
+# github.com/go-logr/logr v0.4.0
+github.com/go-logr/logr
+# github.com/gogo/protobuf v1.3.2
+## explicit
+github.com/gogo/protobuf/proto
+github.com/gogo/protobuf/sortkeys
+# github.com/google/go-cmp v0.5.5
+## explicit
+# github.com/google/gofuzz v1.2.0
+## explicit
+github.com/google/gofuzz
+github.com/google/gofuzz/bytesource
 # github.com/gorilla/context v1.1.1
 ## explicit
 github.com/gorilla/context
 # github.com/gorilla/mux v1.6.2
 ## explicit
 github.com/gorilla/mux
-# github.com/pkg/errors v0.8.1
+# github.com/json-iterator/go v1.1.10
+github.com/json-iterator/go
+# github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+github.com/modern-go/concurrent
+# github.com/modern-go/reflect2 v1.0.1
+github.com/modern-go/reflect2
+# github.com/pkbhowmick/k8s-crd v0.0.0-20210304112549-69a20ee433df
+## explicit
+github.com/pkbhowmick/k8s-crd/pkg/apis/stable.example.com
+github.com/pkbhowmick/k8s-crd/pkg/apis/stable.example.com/v1alpha1
+# github.com/pkg/errors v0.9.1
 github.com/pkg/errors
 # github.com/spf13/afero v1.5.1
 ## explicit
@@ -14,9 +36,67 @@ github.com/spf13/afero/mem
 ## explicit
 github.com/tamalsaha/DIY-k8s-extended-apiserver/lib/certstore
 github.com/tamalsaha/DIY-k8s-extended-apiserver/lib/server
-# golang.org/x/text v0.3.3
+# golang.org/x/net v0.0.0-20210226172049-e18ecbb05110
+## explicit
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
+# golang.org/x/text v0.3.5
+## explicit
+golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
-# k8s.io/client-go v9.0.0+incompatible
+# gopkg.in/inf.v0 v0.9.1
+gopkg.in/inf.v0
+# gopkg.in/yaml.v2 v2.4.0
+## explicit
+gopkg.in/yaml.v2
+# k8s.io/api v0.20.4
+## explicit
+k8s.io/api/admission/v1
+k8s.io/api/authentication/v1
+# k8s.io/apimachinery v0.20.4
+## explicit
+k8s.io/apimachinery/pkg/api/resource
+k8s.io/apimachinery/pkg/apis/meta/v1
+k8s.io/apimachinery/pkg/apis/meta/v1/unstructured
+k8s.io/apimachinery/pkg/conversion
+k8s.io/apimachinery/pkg/conversion/queryparams
+k8s.io/apimachinery/pkg/fields
+k8s.io/apimachinery/pkg/labels
+k8s.io/apimachinery/pkg/runtime
+k8s.io/apimachinery/pkg/runtime/schema
+k8s.io/apimachinery/pkg/runtime/serializer
+k8s.io/apimachinery/pkg/runtime/serializer/json
+k8s.io/apimachinery/pkg/runtime/serializer/protobuf
+k8s.io/apimachinery/pkg/runtime/serializer/recognizer
+k8s.io/apimachinery/pkg/runtime/serializer/versioning
+k8s.io/apimachinery/pkg/selection
+k8s.io/apimachinery/pkg/types
+k8s.io/apimachinery/pkg/util/errors
+k8s.io/apimachinery/pkg/util/framer
+k8s.io/apimachinery/pkg/util/intstr
+k8s.io/apimachinery/pkg/util/json
+k8s.io/apimachinery/pkg/util/naming
+k8s.io/apimachinery/pkg/util/net
+k8s.io/apimachinery/pkg/util/runtime
+k8s.io/apimachinery/pkg/util/sets
+k8s.io/apimachinery/pkg/util/validation
+k8s.io/apimachinery/pkg/util/validation/field
+k8s.io/apimachinery/pkg/util/yaml
+k8s.io/apimachinery/pkg/watch
+k8s.io/apimachinery/third_party/forked/golang/reflect
+# k8s.io/client-go v11.0.0+incompatible
 ## explicit
 k8s.io/client-go/util/cert
+k8s.io/client-go/util/keyutil
+# k8s.io/klog/v2 v2.6.0
+## explicit
+k8s.io/klog/v2
+# sigs.k8s.io/structured-merge-diff/v4 v4.1.0
+## explicit
+sigs.k8s.io/structured-merge-diff/v4/value
+# sigs.k8s.io/yaml v1.2.0
+sigs.k8s.io/yaml

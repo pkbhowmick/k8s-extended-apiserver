@@ -1,24 +1,20 @@
 package main
 
 import (
+	"crypto/tls"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"net"
 	"net/http"
-
-	"k8s.io/apimachinery/pkg/util/json"
 
 	"github.com/gorilla/mux"
 	mycrd "github.com/pkbhowmick/k8s-crd/pkg/apis/stable.example.com/v1alpha1"
-	"github.com/spf13/afero"
-	"github.com/tamalsaha/DIY-k8s-extended-apiserver/lib/certstore"
-	"github.com/tamalsaha/DIY-k8s-extended-apiserver/lib/server"
 	adv1 "k8s.io/api/admission/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/serializer"
-	"k8s.io/client-go/util/cert"
+	"k8s.io/apimachinery/pkg/util/json"
 )
 
 var (
@@ -27,6 +23,11 @@ var (
 	deserializer  = codecs.UniversalDeserializer()
 )
 
+type ServerParameters struct {
+	certFile string
+	keyFile  string
+}
+
 type patchOperation struct {
 	Op    string      `json:"op"`
 	Path  string      `json:"path"`
@@ -34,35 +35,34 @@ type patchOperation struct {
 }
 
 func main() {
-	fs := afero.NewOsFs()
-	store, err := certstore.NewCertStore(fs, "../crt")
-	handleErr(err)
+	var parameters ServerParameters
+	flag.StringVar(&parameters.certFile, "tlsCertFile", "/etc/webhook/certs/cert.pem", "File containing the x509 Certificate for HTTPS.")
+	flag.StringVar(&parameters.keyFile, "tlsKeyFile", "/etc/webhook/certs/key.pem", "File containing the x509 private key to --tlsCertFile.")
+	flag.Parse()
 
-	err = store.InitCA("apiserver")
-	handleErr(err)
-	serverCert, serverKey, err := store.NewServerCertPair(cert.AltNames{
-		IPs: []net.IP{net.ParseIP("127.0.0.3")},
-	})
-	handleErr(err)
-	err = store.Write("webtls", serverCert, serverKey)
-	handleErr(err)
-
-	cfg := server.Config{
-		Address: "127.0.0.3:8443",
-		CACertFiles: []string{
-			store.CertFile("ca"),
-		},
-		CertFile: store.CertFile("webtls"),
-		KeyFile:  store.KeyFile("webtls"),
+	pair, err := tls.LoadX509KeyPair(parameters.certFile, parameters.keyFile)
+	if err != nil {
+		log.Fatalln(err)
+		return
 	}
-	srv := server.NewGenericServer(cfg)
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(res, "Webhook server is ok")
 	})
 	r.HandleFunc("/mutate", Serve)
-	srv.ListenAndServe(r)
+	var server *http.Server
+	server = &http.Server{
+		Addr:      ":443",
+		TLSConfig: &tls.Config{Certificates: []tls.Certificate{pair}},
+		Handler:   r,
+	}
+	go func() {
+		if err := server.ListenAndServeTLS("", ""); err != nil {
+			log.Fatalf("Failed to listen and serve webhook server: %v", err)
+		}
+	}()
+
 }
 
 func Serve(res http.ResponseWriter, req *http.Request) {

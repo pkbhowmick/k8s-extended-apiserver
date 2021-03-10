@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: name-changer-webhook-deployment
-  namespace: name-changer
+  name: name-injector-webhook-deployment
+  namespace: name-injector
   labels:
-    app: name-changer
+    app: name-injector
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: name-changer
+      app: name-injector
   template:
     metadata:
       labels:
-        app: name-changer
+        app: name-injector
     spec:
       containers:
-        - name: name-changer
-          image: pkbhowmick/mutation-webhook:0.1.0
+        - name: name-injector
+          image: pkbhowmick/mutation-webhook:0.1.1
           imagePullPolicy: IfNotPresent
           args:
             - -tlsCertFile=/etc/webhook/certs/cert.pem
@@ -32,4 +32,4 @@ spec:
       volumes:
         - name: webhook-certs
           secret:
-            secretName: name-changer-webhook-certs
+            secretName: name-injector-webhook-certs

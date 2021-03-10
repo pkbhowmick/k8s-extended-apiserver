@@ -1,15 +1,15 @@
 apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: name-changer-webhook-cfg
+  name: name-injector-webhook-cfg
   labels:
-    app: name-chnager
+    app: name-injector
 webhooks:
-  - name: name-changer.pkbhowmick.me
+  - name: name-injector.pkbhowmick.me
     clientConfig:
       service:
-        name: name-changer-webhook-svc
-        namespace: name-changer
+        name: name-injector-webhook-svc
+        namespace: name-injector
         path: "/mutate"
       caBundle: ${CA_BUNDLE}
     rules:
@@ -17,6 +17,3 @@ webhooks:
         apiGroups: [""]
         apiVersions: ["stable.example.com/v1alpha1"]
         resources: ["kubeapis"]
-    namespaceSelector:
-      matchLabels:
-        name-changer: enabled

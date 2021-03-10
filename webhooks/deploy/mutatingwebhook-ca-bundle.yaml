@@ -1,15 +1,15 @@
 apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: name-changer-webhook-cfg
+  name: name-injector-webhook-cfg
   labels:
-    app: name-chnager
+    app: name-injector
 webhooks:
-  - name: name-changer.pkbhowmick.me
+  - name: name-injector.pkbhowmick.me
     clientConfig:
       service:
-        name: name-changer-webhook-svc
-        namespace: name-changer
+        name: name-injector-webhook-svc
+        namespace: name-injector
         path: "/mutate"
       caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1ERXlNREV4TURjMU9Gb1hEVE14TURFeE9ERXhNRGMxT0Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDI5CklkQjUvSHdwY010MHNHckVvWFR4cDRQRGpzZ0R5SnFwMEhwNm5VemY5K2F2T29UeGtVMmVLaEZjTGt3MGEwRFIKSzZnM2VEeXZMRVRQMEMvZGM5aFU2U2VzRUpWUHFsYzdMVXB3V211SHAyN1NOOWlGYlNIWE5vVXU4RENNR2RtQQp2OGpQbHF1aWZ2Yy8zOURFdFpvRDN4K05RNldDNElQaDhGMFc1NThFQ3ZxZzIvUml5dGQzYXNuSnlzaUpud2dkCmVVT0FsSy9SZG8rSGtJcW1JbFhQRjRPYm9weDd0ODVVSk5vSVZBSU9INkd4S3FlQ1A1SnhFOXFCN1lEZVM5c2EKWlJUcW5HU1FsQWxrVTVWRlVjdDdObm9JQlJsOEhhbWRGOFF5dUNGZWc4V21ORWtDWDR0YSs2RGNjVDhoRmhMZApvT1BnckREMldRdS9FeGIvQTRVQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZGUEYyMVhoREZYZDZvc1JDckJXcUo0dGQzRlNNQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFDa2kvYURUejFvc1dGOEVSTFk0NjdhSk1KVWZwajlwTWV0UXI0OUgrWTRiUHlVYnJYSQpnQnhuWXdnaEVBVzJjb1Q1bnZxQnhaUStDRE1heGxWRDEzaU9lRW8wZzNpUVpENzh5SS9NNVJscU1DcHdLeklhCjNmOUo5RlhOcDFpSk9NdFkrSHliWFAvRTlaQ3A5UFVwenErQzkzamJPblZJK3F2eHZibWE3N1hReTZWUjRkZ0EKUDhGdWtZRCt4eDA1K2tybWRaMlRQZ010MDczODlrQVRST0JOaHZFc2FyK2Qxa25IOG52M21RRi9EdnVLWHBGYwpxMkpaTkZGaGtmcmhLUUJtOENBMTZqNXhLRnBxVUM0RTdQUEMvYTN4ZzQ2WTltTnpLdjlMRFN5cmZ4b3lTYnlUCkFWeWFRaDlRckI0K1p5NjcxeVZ3MTV6MnlRcXhwMkZxMFVDTAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
     rules:
@@ -17,6 +17,3 @@ webhooks:
         apiGroups: [""]
         apiVersions: ["stable.example.com/v1alpha1"]
         resources: ["kubeapis"]
-    namespaceSelector:
-      matchLabels:
-        name-changer: enabled

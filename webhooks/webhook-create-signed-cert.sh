@@ -41,8 +41,8 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-[ -z "${service}" ] && service=name-changer-webhook-svc
-[ -z "${secret}" ] && secret=name-changer-webhook-certs
+[ -z "${service}" ] && service=name-injector-webhook-svc
+[ -z "${secret}" ] && secret=name-injector-webhook-certs
 [ -z "${namespace}" ] && namespace=default
 
 if [ ! -x "$(command -v openssl)" ]; then

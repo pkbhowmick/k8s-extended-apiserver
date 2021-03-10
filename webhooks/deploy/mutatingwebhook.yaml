@@ -1,19 +1,21 @@
-apiVersion: admissionregistration.k8s.io/v1beta1
+
+apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: name-injector-webhook-cfg
-  labels:
-    app: name-injector
+  name: nameinjector.webhook.svc
 webhooks:
-  - name: name-injector.pkbhowmick.me
+  - name: nameinjector.webhook.svc
+    rules:
+      - apiGroups:   ["stable.example.com"]
+        apiVersions: ["v1alpha1"]
+        operations:  ["CREATE", "UPDATE"]
+        resources:   ["kubeapis"]
     clientConfig:
       service:
-        name: name-injector-webhook-svc
         namespace: name-injector
-        path: "/mutate"
+        name: name-injector-webhook-svc
+        path: /mutate
       caBundle: ${CA_BUNDLE}
-    rules:
-      - operations: ["CREATE", "UPDATE"]
-        apiGroups: [""]
-        apiVersions: ["stable.example.com/v1alpha1"]
-        resources: ["kubeapis"]
+    admissionReviewVersions: ["v1", "v1beta1"]
+    sideEffects: None
+    timeoutSeconds: 5
